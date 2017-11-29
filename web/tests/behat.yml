@@ -1,4 +1,6 @@
 default:
+  formatters:
+    pretty: true
   suites:
     default:
       contexts:
@@ -7,6 +9,8 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrushContext
+      filters:
+        tags: "~@mobile&&~@javascript"
   extensions:
     Behat\MinkExtension:
       goutte: ~
@@ -21,3 +25,15 @@ default:
         drupal_root: '/var/www/drupalvm/drupal/web'
       region_map:
         content: "#content"
+
+javascript:
+  suites:
+    default:
+      filters:
+        tags: "@javascript&&~@mobile"
+
+mobile:
+  suites:
+    default:
+      filters:
+        tags: "@mobile"
